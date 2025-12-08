@@ -78,3 +78,13 @@ local Toggle = Tab:CreateToggle({
 	end
 end,
 })
+
+local Tab = Window:CreateTab("Other", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Doors")
+local Button = Tab:CreateButton({
+   Name = "Destroy Doors",
+   Callback = function()
+   	local Doors = workspace.Map.Doors
+		Doors:Destroy()
+	end
+})
