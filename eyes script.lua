@@ -39,11 +39,12 @@ local Toggle = Tab:CreateToggle({
 		espM.Adornee = krasue
 		espM.AlwaysOnTop = true
 		espM.ZIndex = 0
-		espM.Size = Vector3.new(4, 4, 4)
+		espM.Size = Vector3.new(4, 4, 0)
 		espM.Transparency = 0.5
 		espM.Color3 = Color3.fromRGB(255, 0, 0)
 	else
-		--
+		local espDM = workspace.Krasue.BoxHandleAdornment
+		espDM:Destroy()
 	end
 end
 })
