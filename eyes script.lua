@@ -64,6 +64,27 @@ local Toggle = Tab:CreateToggle({
 end,
 })
 
+local Toggle = Tab:CreateToggle({
+   Name = "Esp key",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   if Value then
+		local espKey = workspace.Map.Keys.Key
+		local espKe = Instance.new("Highlight")
+		espKe.Parent = espKey
+		espKe.FillColor = Color3.fromRGB(0, 255, 0)
+		espKe.FillTransparency = 0.5
+		espKe.OutlineColor = Color3.fromRGB(255, 255, 255)
+		espKe.OutlineTransparency = 1
+		espKe.DepthMode = "AlwaysOnTop"
+	else
+		local espKeD = workspace.Map.Keys.Key.Highlight
+		espKeD:Destroy()
+	end
+end,
+})
+
 local Tab = Window:CreateTab("Player", 4483362458) -- Title, Image
 local Section = Tab:CreateSection("Speed")
 local Toggle = Tab:CreateToggle({
