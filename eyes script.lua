@@ -34,17 +34,17 @@ local Toggle = Tab:CreateToggle({
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    if Value then
-		local krasue = workspace.Krasue
-		local espM = Instance.new("BoxHandleAdornment", krasue)
-		espM.Adornee = krasue
-		espM.AlwaysOnTop = true
-		espM.ZIndex = 0
-		espM.Size = Vector3.new(2, 2, 2)
-		espM.Transparency = 0.5
-		espM.Color3 = Color3.fromRGB(255, 0, 0)
+		local krasue = workspace.Krasue.default.default
+		local espK = Instance.new("Highlight")
+		espK.Parent = krasue
+		espK.FillColor = Color3.fromRGB(255, 0, 0)
+		espK.FillTransparency = 0.5
+		espK.OutlineColor = Color3.fromRGB(255, 255, 255)
+		espK.OutlineTransparency = 1
+		espK.DepthMode = "AlwaysOnTop"
 	else
-		local espDM = workspace.Krasue.BoxHandleAdornment
-		espDM:Destroy()
+		espKD = workspace.Krasue.default.default.Highlight
+		espKD:Destroy()
 	end
 end,
 })
@@ -58,6 +58,7 @@ local Toggle = Tab:CreateToggle({
 		local XRaySacks = workspace.Map.Bags.XRay
 		XRaySacks.Enabled = true
 	else
+		local XRaySacks = workspace.Map.Bags.XRay
 		XRaySacks.Enabled = false
 	end
 end,
