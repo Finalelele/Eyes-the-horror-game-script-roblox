@@ -39,12 +39,41 @@ local Toggle = Tab:CreateToggle({
 		espM.Adornee = krasue
 		espM.AlwaysOnTop = true
 		espM.ZIndex = 0
-		espM.Size = Vector3.new(4, 4, 0)
+		espM.Size = Vector3.new(2, 2, 2)
 		espM.Transparency = 0.5
 		espM.Color3 = Color3.fromRGB(255, 0, 0)
 	else
 		local espDM = workspace.Krasue.BoxHandleAdornment
 		espDM:Destroy()
 	end
-end
+end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Esp sacks",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+	if Value then
+		local XRaySacks = workspace.Map.Bags.XRay
+		XRaySacks.Enabled = true
+	else
+		XRaySacks.Enabled = false
+	end
+end,
+})
+
+local Tab = Window:CreateTab("Player", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Speed")
+local Toggle = Tab:CreateToggle({
+   Name = "Player Speed",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   if Value then
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 30
+	else
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 8
+	end
+end,
 })
