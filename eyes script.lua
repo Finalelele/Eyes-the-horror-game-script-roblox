@@ -126,10 +126,18 @@ local Button = Tab:CreateButton({
 })
 
 local Section = Tab:CreateSection("Brightness")
-local Button = Tab:CreateButton({
-   Name = "Brigtness",
-   Callback = function()
-   	local lighting = game:GetService("Lighting")
-	lighting.Brightness = 20
-end
+
+local Toggle = Tab:CreateToggle({
+   Name = "Brightness",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   if Value then
+		local lighting = game:GetService("Lighting")
+		lighting.Brightness = 20
+	else
+		local lighting = game:GetService("Lighting")
+		lighting.Brightness = 0
+	end
+end,
 })
