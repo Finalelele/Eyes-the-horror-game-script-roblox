@@ -52,7 +52,7 @@ end,
 })
 
 local Toggle = Tab:CreateToggle({
-   Name = "Esp sacks",
+   Name = "Esp sacks (dont work on phone)",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
@@ -95,8 +95,21 @@ local Toggle = Tab:CreateToggle({
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    if Value then
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 30
+		local SpeedBox = workspace
+		SpBox = Instance.new("BoxHandleAdornment")
+		SpBox.Parent = SpeedBox
+		SpBox.Name = "SpedBox"
+		while wait(0.1) do
+			local spb = workspace.SpedBox
+			if spb.Parent == workspace then
+				game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 30
+			else
+				break
+			end
+		end
 	else
+		local SpdBox = workspace.SpedBox
+		SpdBox:Destroy()
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 8
 	end
 end,
@@ -110,4 +123,13 @@ local Button = Tab:CreateButton({
    	local Doors = workspace.Map.Doors
 		Doors:Destroy()
 	end
+})
+
+local Section = Tab:CreateSection("Brightness")
+local Button = Tab:CreateButton({
+   Name = "Brigtness",
+   Callback = function()
+   	local lighting = game:GetService("Lighting")
+	lighting.Brightness = 20
+end
 })
