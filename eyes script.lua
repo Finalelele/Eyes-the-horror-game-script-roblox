@@ -42,8 +42,6 @@ local Toggle = Tab:CreateToggle({
 		espK.Parent = krasue
 		espK.FillColor = Color3.fromRGB(255, 0, 0)
 		espK.FillTransparency = 0.5
-		espK.OutlineColor = Color3.fromRGB(255, 255, 255)
-		espK.OutlineTransparency = 1
 		espK.DepthMode = "AlwaysOnTop"
 	else
 		espKD = workspace.Krasue.default.default.Highlight
@@ -78,12 +76,45 @@ local Toggle = Tab:CreateToggle({
 		espKe.Parent = espKey
 		espKe.FillColor = Color3.fromRGB(0, 255, 0)
 		espKe.FillTransparency = 0.5
-		espKe.OutlineColor = Color3.fromRGB(255, 255, 255)
-		espKe.OutlineTransparency = 1
 		espKe.DepthMode = "AlwaysOnTop"
 	else
 		local espKeD = workspace.Map.Keys.Key.Highlight
 		espKeD:Destroy()
+	end
+end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Esp Eyes",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   if Value then
+		local eyes = workspace.Map.Eyes
+		for _,v in pairs (eyes:GetDescendants()) do
+			if v.Name == "Eye" then
+				v.Transparency = 0
+				local espEye = Instance.new("Highlight")
+				espEye.Parent = v
+				espEye.FillColor = Color3.fromRGB(0, 255, 255)
+				espEye.FillTransparency = 0.5
+				espEye.DepthMode = "AlwaysOnTop"
+				espEye.Name = "EyesEsp"
+			end
+		end
+	else
+		local eyes = workspace.Map.Eyes
+		for _,v in pairs (eyes:GetDescendants()) do
+			if v.Name == "EyesEsp" then
+				v:Destroy()
+			end
+		end
+
+		for _,v in pairs (eyes:GetDescendants()) do
+			if v.Name == "Eye" then
+				v.Transparency = 0
+			end
+		end
 	end
 end,
 })
