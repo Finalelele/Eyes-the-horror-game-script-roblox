@@ -121,8 +121,8 @@ local Button = Tab:CreateButton({
    Name = "Destroy Doors",
    Callback = function()
    	local Doors = workspace.Map.Doors
-		Doors:Destroy()
-	end
+	Doors:Destroy()
+end
 })
 
 local Section = Tab:CreateSection("Brightness")
@@ -139,4 +139,14 @@ local Toggle = Tab:CreateToggle({
 		lighting.Brightness = 0
 	end
 end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Destroy Flashlight",
+   Callback = function()
+   	local fl = workspace.Flashlight
+	fl:Destroy()
+	local rsa = game:GetService("ReplicatedStorage").Assets.Flashlight
+	rsa:Destroy()
+end
 })
