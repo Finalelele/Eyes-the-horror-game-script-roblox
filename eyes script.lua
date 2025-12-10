@@ -116,14 +116,15 @@ end,
 })
 
 local Toggle = Tab:CreateToggle({
-   Name = "Krasue Camera",
+   Name = "Krasue Camera (Auto)",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    if Value then
 		local cam = workspace.Camera
-		local Kcam = workspace.Krasue.KrasueCamera
-		cam.CameraSubject = Kcam
+		local camK = workspace.Krasue.KrasueCamera
+		cam.CameraSubject = camK
+		cam.CameraType = Enum.CameraType.Watch
 		local krasueBone = workspace.Krasue.default.default
 		krasueBone.Transparency = 1
 		local VEye = game:GetService("Lighting").Eye
@@ -134,6 +135,38 @@ local Toggle = Tab:CreateToggle({
 		local cam = workspace.Camera
 		local camP = game.Players.LocalPlayer.Character.Humanoid
 		cam.CameraSubject = camP
+		cam.CameraType = Enum.CameraType.Custom
+		local krasueBone = workspace.Krasue.default.default
+		krasueBone.Transparency = 0
+		local VEye = game:GetService("Lighting").Eye
+		VEye.Enabled = false
+		local lighting = game:GetService("Lighting")
+		lighting.Brightness = 1
+	end
+end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Krasue Camera (Manual)",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   if Value then
+		local cam = workspace.Camera
+		local camK = workspace.Krasue.KrasueCamera
+		cam.CameraSubject = camK
+		cam.CameraType = Enum.CameraType.Custom
+		local krasueBone = workspace.Krasue.default.default
+		krasueBone.Transparency = 1
+		local VEye = game:GetService("Lighting").Eye
+		VEye.Enabled = true
+		local lighting = game:GetService("Lighting")
+		lighting.Brightness = 30
+	else
+		local cam = workspace.Camera
+		local camP = game.Players.LocalPlayer.Character.Humanoid
+		cam.CameraSubject = camP
+		cam.CameraType = Enum.CameraType.Custom
 		local krasueBone = workspace.Krasue.default.default
 		krasueBone.Transparency = 0
 		local VEye = game:GetService("Lighting").Eye
